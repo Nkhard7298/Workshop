@@ -1,0 +1,79 @@
+<html>
+<head>
+	<style>
+	 .like
+            {
+            	background-color: blue;
+                color: white;
+                cursor: pointer;
+            }
+
+            .unlike
+            {
+				background-color: green;
+                color: white;
+                cursor: pointer;
+            }
+            .like:hover
+            {
+            	 background-color: pink;
+            }
+
+            .unlike:hover
+            {
+            	 background-color: pink;
+            }
+	</style>
+<script>
+	function OnClick()
+	{
+
+
+	var buttonObj=document.getElementById("button_element");
+	var arr=["Naman","Abhinav","Anmol"];
+	var List=""
+	for(var i=0;i<arr.length;i++)
+	{
+		List=List+"<ol>"+arr[i]+""+"<button class='like' onclick='OnLikeClick()' id='button-like-unlike'>Like</button></ol>";
+	}
+	console.log(List);
+	document.getElementById("testList").innerHTML=List;
+
+
+	if(buttonObj.textContent=="Hide Friends")
+	{
+		buttonObj.textContent="Show Friends";
+		document.getElementById("testList").innerHTML="";
+	}
+	else
+	{
+		buttonObj.textContent="Hide Friends";
+	}
+	}
+
+	function OnLikeClick()
+	{
+		var buttonobj = document.getElementById('button-like-unlike');
+            
+            if (buttonobj.textContent=="Unlike"  ) {
+                buttonobj.textContent = "Like";
+                console.log("Like called");
+                //buttonobj.style.backgroundColor = "blue";
+                buttonobj.setAttribute('class','like');
+                
+            }  else {
+                buttonobj.textContent = "Unlike";
+                console.log("UnLike called");
+                //buttonobj.style.backgroundColor = "green";
+                buttonobj.setAttribute('class','unlike');
+            }
+
+	}
+</script>	
+
+</head>
+<body align="justify">
+	<button onclick="OnClick()" id="button_element" class="hide">Show Friends</button>
+	<ol id="testList"></ol>
+</body>
+</html>
