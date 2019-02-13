@@ -34,7 +34,7 @@
 	var List=""
 	for(var i=0;i<arr.length;i++)
 	{
-		List=List+"<ol>"+arr[i]+""+"<button class='like' onclick='OnLikeClick()' id='button-like-unlike'>Like</button></ol>";
+		List=List+"<ol>"+Friends.data[i].name+""+"<button class='like' onclick='OnLikeClick()' id='button-like-unlike'>Like</button></ol>";
 	}
 	console.log(List);
 	document.getElementById("testList").innerHTML=List;
@@ -49,7 +49,29 @@
 	{
 		buttonObj.textContent="Hide Friends";
 	}
-	}
+
+	var xhr=new XMLHttpRequest();
+                  xhr.open('GET','friends.json');
+                  xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+                  xhr.send();
+                  xhr.onload=function()
+                  {
+                      if(xhr.status!=200)
+                      {
+                  callbackError({
+                      status:xhr.status,
+                       statusText: xhr.statusText
+                   });
+                   console.log(xhr.status+':'+xhr.statusText);
+                      }
+                      else
+                      {
+                          console.log(xhr.responseText);
+                      console.log(JSON.parse(xhr.responseText));
+                      var Friends = JSON.parse(xhr.responseText);
+					  }
+				  }
+}
 
 	function OnLikeClick()
 	{
