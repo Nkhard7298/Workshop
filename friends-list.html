@@ -19,7 +19,7 @@
             	 background-color: pink;
             }
 
-            .unlike:hover
+            .unlike:hover 
             {
             	 background-color: pink;
             }
@@ -28,13 +28,12 @@
 	function OnClick()
 	{
 
-
 	var buttonObj=document.getElementById("button_element");
 	var arr=["Naman","Abhinav","Anmol"];
-	var List=""
+	var List="";
 	for(var i=0;i<arr.length;i++)
 	{
-		List=List+"<ol>"+Friends.data[i].name+""+"<button class='like' onclick='OnLikeClick()' id='button-like-unlike'>Like</button></ol>";
+		List=List+"<li>"+arr[i]+"<button class='like' onclick=OnLikeClick('"+arr[i]+"') id='"+arr[i]+"'>Like</button></li>";
 	}
 	console.log(List);
 	document.getElementById("testList").innerHTML=List;
@@ -49,34 +48,13 @@
 	{
 		buttonObj.textContent="Hide Friends";
 	}
+	}
 
-	var xhr=new XMLHttpRequest();
-                  xhr.open('GET','friends.json');
-                  xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-                  xhr.send();
-                  xhr.onload=function()
-                  {
-                      if(xhr.status!=200)
-                      {
-                  callbackError({
-                      status:xhr.status,
-                       statusText: xhr.statusText
-                   });
-                   console.log(xhr.status+':'+xhr.statusText);
-                      }
-                      else
-                      {
-                          console.log(xhr.responseText);
-                      console.log(JSON.parse(xhr.responseText));
-                      var Friends = JSON.parse(xhr.responseText);
-					  }
-				  }
-}
-
-	function OnLikeClick()
+	function OnLikeClick(arr)
 	{
-		var buttonobj = document.getElementById('button-like-unlike');
+		var buttonobj = document.getElementById(arr);
             
+
             if (buttonobj.textContent=="Unlike"  ) {
                 buttonobj.textContent = "Like";
                 console.log("Like called");
